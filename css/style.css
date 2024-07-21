@@ -1,0 +1,100 @@
+html {
+  font-family: "Noto Sans JP", sans-serif;
+  color: #404040;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  min-width: 300px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  padding: 0.25rem;
+  background-color: #404040;
+  color: white;
+}
+
+#main {
+  margin: 1rem;
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 1.2rem 0 0.35rem 0;
+  }
+
+  .data-updated {
+    display: inline-block;
+    font-size: 0.8rem;
+    border: 1px solid #404040;
+
+    .data-updated-header,
+    .data-updated-body {
+      display: inline-block;
+      padding: 0.25rem;
+    }
+
+    .data-updated-header {
+      background-color: #404040;
+      color: white;
+    }
+
+    .data-updated-body {
+      background-color: #f4f4f4;
+    }
+  }
+
+  .search-form {
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+  }
+  .result {
+    .room-name {
+      justify-content: center;
+    }
+    .room-status {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.5rem;
+      color: white;
+      white-space: nowrap;
+      text-align: center;
+      justify-content: center;
+    }
+    .room-free {
+      background: linear-gradient(75.7deg, rgb(34, 126, 34) 3.8%, rgb(99, 162, 37) 87.1%);
+    }
+    .room-occupied {
+      background: linear-gradient(25deg, #d64c7f, #ee4758 50%);
+    }
+  }
+}
+
+#footer {
+  padding: 0.1rem 1rem;
+  background-color: #404040;
+  color: white;
+
+  h1,
+  h2 {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.35rem 0;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin: 0.1rem 0 0.1rem 0;
+  }
+
+  a {
+    color: white;
+  }
+}
