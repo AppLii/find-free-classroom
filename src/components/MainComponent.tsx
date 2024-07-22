@@ -1,64 +1,61 @@
+import React, { useState, useEffect } from "react";
+import scheduleData from "./ScheduleData";
+
 const classRoomFreeFrag = "空き";
 const classRoomOccupiedFrag = "使用中";
 
-function ClassRoomStatusDisplay(props) {
-  const roomName = props.roomName;
-  const status = props.status;
+interface ClassRoomStatusDisplayProps {
+  roomName: string;
+  status: string;
+}
+
+const ClassRoomStatusDisplay: React.FC<ClassRoomStatusDisplayProps> = ({ roomName, status }) => {
   const isAvailable = status === "空き";
   return (
     <table>
       <tbody>
         <tr>
-          {(() => {
-            if (isAvailable) {
-              return (
-                <td>
-                  <span className="room-status room-free">空き教室</span>
-                </td>
-              );
-            } else {
-              return (
-                <td>
-                  <span className="room-status room-occupied">使用中</span>
-                </td>
-              );
-            }
-          })()}
+          <td>
+            <span className={`room-status ${isAvailable ? "room-free" : "room-occupied"}`}>{isAvailable ? "空き教室" : "使用中"}</span>
+          </td>
           <td className="room-name">{roomName}</td>
         </tr>
       </tbody>
     </table>
   );
-}
+};
 
-function getNowDayAndTime() {
+function getNowDayAndTime(): [string, string] {
   const now = new Date();
-
   const daysOfWeek = ["日", "月", "火", "水", "木", "金", "土"];
   const day = daysOfWeek[now.getDay()];
-
   // TODO: 現在時刻に対応する時間帯を取得する
   const time = "";
   return [day, time];
 }
 
-const MainComponent = () => {
+// scheduleDataの型を定義
+interface ScheduleItem {
+  classroom: string;
+  day: string;
+  time: string;
+}
+
+const MainComponent: React.FC = () => {
   const [nowDay, nowTime] = getNowDayAndTime();
-  const [day, setDay] = React.useState(nowDay);
-  const [time, setTime] = React.useState(nowTime);
-  const [availability, setAvailability] = React.useState({});
+  const [day, setDay] = useState(nowDay);
+  const [time, setTime] = useState(nowTime);
+  const [availability, setAvailability] = useState<Record<string, string>>({});
 
   const checkAvailability = () => {
-    const availabilityMap = {};
+    const availabilityMap: Record<string, string> = {};
 
-    // すべての教室を初期状態で「空き」とする
     scheduleData.forEach((item) => {
       if (!availabilityMap[item.classroom]) {
         availabilityMap[item.classroom] = classRoomFreeFrag;
       }
     });
 
-    // 選択された曜日と時間に授業がある教室を「使用中」にする
     scheduleData.forEach((item) => {
       if (item.day === day && item.time === time) {
         availabilityMap[item.classroom] = classRoomOccupiedFrag;
@@ -68,14 +65,14 @@ const MainComponent = () => {
     setAvailability(availabilityMap);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (day && time) {
       checkAvailability();
     }
   }, [day, time]);
 
   return (
-    <div>
+    <div id="main">
       <div className="data-updated">
         <span className="data-updated-header">最終データ更新日</span>
         <span className="data-updated-body">2024年7月20日</span>
@@ -102,12 +99,12 @@ const MainComponent = () => {
       </div>
       <div className="result">
         <h1>2. 空き教室を見つける</h1>
-        {Object.entries(availability).map(([classroom, status]) => (status === classRoomFreeFrag ? <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} /> : null))}
-        {Object.entries(availability).map(([classroom, status]) => (status === classRoomOccupiedFrag ? <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} /> : null))}
+        {Object.entries(availability).map(([classroom, status]) => (
+          <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} />
+        ))}
       </div>
     </div>
   );
 };
 
-// メインコンポーネントをレンダリング
-ReactDOM.render(<MainComponent />, document.getElementById("main"));
+export default MainComponent;

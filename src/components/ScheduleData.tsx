@@ -1,4 +1,16 @@
-const NotProcessedScheduleData = [
+// 未処理のスケジュールデータの型定義
+type RawScheduleData = [string, string, string][];
+
+// 処理済みのスケジュールデータの型定義
+interface ProcessedScheduleItem {
+  courseCode: string;
+  classroom: string;
+  day: string;
+  time: string;
+}
+
+// シラバスから抽出したデータ
+const NotProcessedScheduleData: RawScheduleData = [
   ["L1310068_L1", "その他,東２号館Ｌ１０１,東２号館Ｌ２０１,東３号館南１１２W,東３号館南１１２E／その他,東２号館Ｌ１０１,東２号館Ｌ２０１,東３号館南１１２W,東３号館南１１２E", "木／Thu5"],
   ["L1310059_L1", "その他,東２号館Ｌ１０５／その他,東２号館Ｌ１０５", "木／Thu2"],
   ["S1402740_S1", "学術情報センター第１演習室（西５号館）／学術情報センター第１演習室（西５号館）", "金／Fri1,金／Fri2"],
@@ -1547,12 +1559,11 @@ const NotProcessedScheduleData = [
 ];
 
 // シラバスから抽出したデータを、扱いやすくするために加工する
-const processScheduleData = (scheduleData) => {
-  const processedData = [];
+const processScheduleData = (scheduleData: RawScheduleData): ProcessedScheduleItem[] => {
+  const processedData: ProcessedScheduleItem[] = [];
 
   scheduleData.forEach(([courseCode, classrooms, schedules]) => {
     const processedClassrooms = classrooms.split("／")[0].split(",");
-
     const scheduleList = schedules.split(",");
 
     scheduleList.forEach((schedule) => {
@@ -1570,4 +1581,8 @@ const processScheduleData = (scheduleData) => {
 
   return processedData;
 };
+
+// データを処理して、エクスポートする
 const scheduleData = processScheduleData(NotProcessedScheduleData);
+
+export default scheduleData;
