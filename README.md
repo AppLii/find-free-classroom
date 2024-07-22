@@ -1,2 +1,3 @@
 # find-free-classroom
-シラバスデータから空き教室を見つけるためのWebアプリ (React, GitHub Pages)
+
+シラバスデータから空き教室を見つけるための Web アプリ (React, GitHub Pages)
