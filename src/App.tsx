@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import Header from "./components/Header";
 import MainComponent from "./components/MainComponent";
 import Footer from "./components/Footer";
@@ -9,11 +11,20 @@ import "./styles/footer.scss";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Header />
-      <MainComponent />
-      <Footer />
-    </div>
+    <Router basename="/find-free-classroom">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="App">
+              <Header />
+              <MainComponent />
+              <Footer />
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 };
 
