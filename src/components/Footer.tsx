@@ -30,6 +30,12 @@ const Footer: React.FC = () => (
       <LinkLi text="お問い合わせ先" url="https://applii-wu.net/contact" />
       <LinkLi text="GitHub リポジトリ" url="https://github.com/AppLii/find-free-classroom" />
     </ul>
+
+    <p className="copyright">
+      Copyright 2024
+      <br />
+      和歌山大学クリエ ITものづくりプロジェクト AppLii
+    </p>
   </div>
 );
 
