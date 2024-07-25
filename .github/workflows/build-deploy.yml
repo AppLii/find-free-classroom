@@ -1,8 +1,6 @@
 name: Deploy to GitHub Pages
 
 permissions:
-  actions: write
-  checks: write
   contents: write
 
 on:
@@ -32,17 +30,22 @@ jobs:
         env:
           CI: false
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          # Add the repo scope to the token
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Move build to docs
+        run: |
+          rm -rf ./docs/
+          mkdir ./docs
+          mv ./build/* ./docs/
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: npm-logs
-          path: ~/.npm/_logs
+      # アンダースコアから始まるディレクトリが無視される不具合によってアイコンが404NotFoundになる
+      # その不具合を避けるために、`.nojekyll`を追加する
+      - name: add .nojekyll
+        run: touch ./docs/.nojekyll
+
+      # ここまでの作業をReleaseブランチ上で反映させる
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add -A
+          git commit -m "Push build result [skip ci]"
+          git push
