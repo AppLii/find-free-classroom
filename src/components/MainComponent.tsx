@@ -7,22 +7,23 @@ const classRoomOccupiedFrag = "使用中";
 interface ClassRoomStatusDisplayProps {
   roomName: string;
   status: string;
+  showOnEnabled: boolean;
 }
 
-const ClassRoomStatusDisplay: React.FC<ClassRoomStatusDisplayProps> = ({ roomName, status }) => {
-  const isAvailable = status === "空き";
-  return (
-    <table>
-      <tbody>
-        <tr>
-          <td>
-            <span className={`room-status ${isAvailable ? "room-free" : "room-occupied"}`}>{isAvailable ? "空き教室" : "使用中"}</span>
-          </td>
-          <td className="room-name">{roomName}</td>
-        </tr>
-      </tbody>
-    </table>
-  );
+const ClassRoomStatusDisplay: React.FC<ClassRoomStatusDisplayProps> = ({ roomName, status, showOnEnabled }) => {
+  const isAvailable = status === classRoomFreeFrag;
+  if (isAvailable === showOnEnabled) {
+    return (
+      <tr className="">
+        <td className="text-center">
+          <span className={`room-status ${isAvailable ? "room-free" : "room-occupied"}`}>{isAvailable ? "空き教室" : "使用中"}</span>
+        </td>
+        <td className="room-name">{roomName}</td>
+      </tr>
+    );
+  } else {
+    return <tr></tr>;
+  }
 };
 
 function getNowDayAndTime(): [string, string] {
@@ -32,13 +33,6 @@ function getNowDayAndTime(): [string, string] {
   // TODO: 現在時刻に対応する時間帯を取得する
   const time = "";
   return [day, time];
-}
-
-// scheduleDataの型を定義
-interface ScheduleItem {
-  classroom: string;
-  day: string;
-  time: string;
 }
 
 const MainComponent: React.FC = () => {
@@ -99,9 +93,19 @@ const MainComponent: React.FC = () => {
       </div>
       <div className="result">
         <h1>2. 空き教室を見つける</h1>
-        {Object.entries(availability).map(([classroom, status]) => (
-          <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} />
-        ))}
+        <a className="campus-map-url" href="https://www.wakayama-u.ac.jp/_files/00703642/HP20231006.pdf">
+          ▶ キャンパスマップはこちら ◀
+        </a>
+        <table>
+          <tbody>
+            {Object.entries(availability).map(([classroom, status]) => (
+              <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} showOnEnabled={true} />
+            ))}
+            {Object.entries(availability).map(([classroom, status]) => (
+              <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} showOnEnabled={false} />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

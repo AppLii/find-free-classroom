@@ -36,9 +36,21 @@
       border-radius: 0.5rem;
     }
   }
+
+  .campus-map-url {
+    display: block;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    color: white;
+    background: linear-gradient(110.1deg, rgb(241, 115, 30) 18.9%, rgb(231, 29, 54) 90.7%);
+    border-radius: 1rem;
+  }
+
   .result {
     .room-name {
       justify-content: center;
+      user-select: all;
+      width: 100%;
     }
     .room-status {
       display: inline-block;

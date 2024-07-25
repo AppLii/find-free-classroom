@@ -1558,6 +1558,8 @@ const NotProcessedScheduleData: RawScheduleData = [
   ["S1408130_S1", "北３号館Ｂ５０１／北３号館Ｂ５０１", "他／Otr"],
 ];
 
+const ignoreList = ["その他", "図書館セミナールーム４（西５号館）", "体育関連施設", "体育館（アリーナ）"];
+
 // シラバスから抽出したデータを、扱いやすくするために加工する
 const processScheduleData = (scheduleData: RawScheduleData): ProcessedScheduleItem[] => {
   const processedData: ProcessedScheduleItem[] = [];
@@ -1569,6 +1571,7 @@ const processScheduleData = (scheduleData: RawScheduleData): ProcessedScheduleIt
     scheduleList.forEach((schedule) => {
       const [day, time] = schedule.split("／");
       processedClassrooms.forEach((classroom) => {
+        if (ignoreList.includes(classroom)) return;
         processedData.push({
           courseCode,
           classroom,
@@ -1579,7 +1582,10 @@ const processScheduleData = (scheduleData: RawScheduleData): ProcessedScheduleIt
     });
   });
 
-  return processedData;
+  // sort by room name
+  const sortedProcessedData = [...processedData].sort((a, b) => a.classroom.localeCompare(b.classroom));
+
+  return sortedProcessedData;
 };
 
 // データを処理して、エクスポートする
