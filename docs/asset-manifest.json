@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.a70d4477.css",
-    "main.js": "/static/js/main.ecf006cd.js",
-    "static/js/453.c491278f.chunk.js": "/static/js/453.c491278f.chunk.js",
-    "index.html": "/index.html",
-    "main.a70d4477.css.map": "/static/css/main.a70d4477.css.map",
-    "main.ecf006cd.js.map": "/static/js/main.ecf006cd.js.map",
-    "453.c491278f.chunk.js.map": "/static/js/453.c491278f.chunk.js.map"
+    "main.css": "/find-free-classroom/static/css/main.c61f6205.css",
+    "main.js": "/find-free-classroom/static/js/main.a07e63f1.js",
+    "static/js/453.c491278f.chunk.js": "/find-free-classroom/static/js/453.c491278f.chunk.js",
+    "index.html": "/find-free-classroom/index.html",
+    "main.c61f6205.css.map": "/find-free-classroom/static/css/main.c61f6205.css.map",
+    "main.a07e63f1.js.map": "/find-free-classroom/static/js/main.a07e63f1.js.map",
+    "453.c491278f.chunk.js.map": "/find-free-classroom/static/js/453.c491278f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a70d4477.css",
-    "static/js/main.ecf006cd.js"
+    "static/css/main.c61f6205.css",
+    "static/js/main.a07e63f1.js"
   ]
 }
