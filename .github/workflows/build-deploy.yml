@@ -1,5 +1,10 @@
 name: Deploy to GitHub Pages
 
+permissions:
+  actions: write
+  checks: write
+  contents: write
+
 on:
   push:
     branches:
@@ -32,6 +37,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          # Add the repo scope to the token
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
