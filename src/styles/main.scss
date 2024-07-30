@@ -1,5 +1,12 @@
 #main {
-  margin: 1rem;
+  margin: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+
+  #main-container {
+    width: 100%;
+    max-width: 720px;
+  }
 
   h1 {
     font-size: 1.5rem;
@@ -42,6 +49,7 @@
     margin: 0 0 1rem 0;
     padding: 0.5rem 0.5rem 0.5rem 1rem;
     color: white;
+    text-align: center;
     background: linear-gradient(110.1deg, rgb(241, 115, 30) 18.9%, rgb(231, 29, 54) 90.7%);
     border-radius: 1rem;
   }
