@@ -66,48 +66,50 @@ const MainComponent: React.FC = () => {
   }, [day, time]);
 
   return (
-    <div id="main">
-      <div className="data-updated">
-        <span className="data-updated-header">最終データ更新日</span>
-        <span className="data-updated-body">2024年7月20日</span>
+    <main id="main">
+      <div id="main-container">
+        <div className="data-updated">
+          <span className="data-updated-header">最終データ更新日</span>
+          <span className="data-updated-body">2024年7月20日</span>
+        </div>
+        <h1>1. 曜日と時間を入力する</h1>
+        <div className="search-form">
+          <select value={day} onChange={(e) => setDay(e.target.value)}>
+            <option value="">曜日を選択</option>
+            <option value="月">月曜日</option>
+            <option value="火">火曜日</option>
+            <option value="水">水曜日</option>
+            <option value="木">木曜日</option>
+            <option value="金">金曜日</option>
+          </select>
+          <select value={time} onChange={(e) => setTime(e.target.value)}>
+            <option value="">時間を選択</option>
+            <option value="1">1限</option>
+            <option value="2">2限</option>
+            <option value="3">3限</option>
+            <option value="4">4限</option>
+            <option value="5">5限</option>
+            <option value="6">6限</option>
+          </select>
+        </div>
+        <div className="result">
+          <h1>2. 空き教室を見つける</h1>
+          <a className="campus-map-url" href="https://www.wakayama-u.ac.jp/_files/00703642/HP20231006.pdf">
+            ▶ キャンパスマップはこちら ◀
+          </a>
+          <table>
+            <tbody>
+              {Object.entries(availability).map(([classroom, status]) => (
+                <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} showOnEnabled={true} />
+              ))}
+              {Object.entries(availability).map(([classroom, status]) => (
+                <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} showOnEnabled={false} />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <h1>1. 曜日と時間を入力する</h1>
-      <div className="search-form">
-        <select value={day} onChange={(e) => setDay(e.target.value)}>
-          <option value="">曜日を選択</option>
-          <option value="月">月曜日</option>
-          <option value="火">火曜日</option>
-          <option value="水">水曜日</option>
-          <option value="木">木曜日</option>
-          <option value="金">金曜日</option>
-        </select>
-        <select value={time} onChange={(e) => setTime(e.target.value)}>
-          <option value="">時間を選択</option>
-          <option value="1">1限</option>
-          <option value="2">2限</option>
-          <option value="3">3限</option>
-          <option value="4">4限</option>
-          <option value="5">5限</option>
-          <option value="6">6限</option>
-        </select>
-      </div>
-      <div className="result">
-        <h1>2. 空き教室を見つける</h1>
-        <a className="campus-map-url" href="https://www.wakayama-u.ac.jp/_files/00703642/HP20231006.pdf">
-          ▶ キャンパスマップはこちら ◀
-        </a>
-        <table>
-          <tbody>
-            {Object.entries(availability).map(([classroom, status]) => (
-              <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} showOnEnabled={true} />
-            ))}
-            {Object.entries(availability).map(([classroom, status]) => (
-              <ClassRoomStatusDisplay key={classroom} roomName={classroom} status={status} showOnEnabled={false} />
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </main>
   );
 };
 

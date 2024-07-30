@@ -14,7 +14,7 @@ const LinkLi: React.FC<LinkLiProps> = ({ url, text }) => (
 );
 
 const Footer: React.FC = () => (
-  <div id="footer">
+  <footer id="footer">
     <h1>和大の空き教室検索システム</h1>
     <p>このシステムは、和歌山大学の空き教室を検索するためのものです。</p>
 
@@ -36,7 +36,7 @@ const Footer: React.FC = () => (
       <br />
       和歌山大学クリエ ITものづくりプロジェクト AppLii
     </p>
-  </div>
+  </footer>
 );
 
 export default Footer;
