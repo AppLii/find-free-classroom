@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/find-free-classroom/static/css/main.ec6e233f.css",
-    "main.js": "/find-free-classroom/static/js/main.8e081f60.js",
+    "main.js": "/find-free-classroom/static/js/main.fcd161c6.js",
     "static/js/453.c491278f.chunk.js": "/find-free-classroom/static/js/453.c491278f.chunk.js",
     "index.html": "/find-free-classroom/index.html",
     "main.ec6e233f.css.map": "/find-free-classroom/static/css/main.ec6e233f.css.map",
-    "main.8e081f60.js.map": "/find-free-classroom/static/js/main.8e081f60.js.map",
+    "main.fcd161c6.js.map": "/find-free-classroom/static/js/main.fcd161c6.js.map",
     "453.c491278f.chunk.js.map": "/find-free-classroom/static/js/453.c491278f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ec6e233f.css",
-    "static/js/main.8e081f60.js"
+    "static/js/main.fcd161c6.js"
   ]
 }
