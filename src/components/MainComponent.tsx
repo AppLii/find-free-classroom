@@ -70,7 +70,7 @@ const MainComponent: React.FC = () => {
       <div id="main-container">
         <div className="data-updated">
           <span className="data-updated-header">最終データ更新日</span>
-          <span className="data-updated-body">2024年7月20日</span>
+          <span className="data-updated-body">2025年4月26日</span>
         </div>
         <h1>1. 曜日と時間を入力する</h1>
         <div className="search-form">
